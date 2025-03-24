@@ -1,67 +1,31 @@
-import React from 'react';
+import logo from './logo.svg';
 import './App.css';
 
-function LoremIpsumGenerator() {
-  return (
-    <div>
-      <h2>Lorem Ipsum Generator</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      </p>
-    </div>
-  );
-}
-
-function MyTable() {
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>Header 1</th>
-          <th>Header 2</th>
-          <th>Header 3</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Row 1, Data 1</td>
-          <td>Row 1, Data 2</td>
-          <td>Row 1, Data 3</td>
-        </tr>
-        <tr>
-          <td>Row 2, Data 1</td>
-          <td>Row 2, Data 2</td>
-          <td>Row 2, Data 3</td>
-        </tr>
-      </tbody>
-    </table>
-  );
-}
-
-
-function ScheduleMaker() {
-  return (
-    <div>
-      <h2>Schedule Maker</h2>
-      <p>
-        Create your schedule by adding tasks and deadlines.
-      </p>
-      {/* Add more functionality for the schedule maker here */}
-    </div>
-  );
-}
-
 function App() {
+
+  const message = "Let's get diverse."
+  const teachers = ["Mrs. Wildfong ", "Ms. Small ", "Dr. Crowthers ", "Ms. Ludes ", "Mrs. Burns ", "Mrs. Chase ", "Mrs. Taricco ", "Mrs. Post ", "Ms. Liz"];
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Welcome to the Lorem Ipsum Schedule Maker</h1>
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <h1>Hello, {teachers}</h1>
+        <h2>{message}</h2>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+        <input type="text">
+        
+        </input>
       </header>
-      <main>
-        <LoremIpsumGenerator />
-        <ScheduleMaker />
-        <MyTable />
-      </main>
     </div>
   );
 }
