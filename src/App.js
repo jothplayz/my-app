@@ -1,5 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAISdb96KG820TSHtIyvUT_U5g1oxpT-YI",
+  authDomain: "mams-schedule-app.firebaseapp.com",
+  projectId: "mams-schedule-app",
+  storageBucket: "mams-schedule-app.firebasestorage.app",
+  messagingSenderId: "780706817346",
+  appId: "1:780706817346:web:4a3848b6980071d0fad4db"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 function App() {
 
