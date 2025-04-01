@@ -54,19 +54,9 @@ function HomePage() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
         <h1>Hello, {teachers}</h1>
         <h2>{message}</h2>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      
         <form>
           <label htmlFor="requirements">Please enter the type of requirement</label>
           <br />
@@ -77,16 +67,18 @@ function HomePage() {
             <option value="E section">E</option>
             <option value="D section">D</option>
           </select>
-          <br />
-          <label htmlFor="class">Please enter the class</label>
-          <br />
-          <input type="text" id="class" />
-          <br />
-          <label htmlFor="time">Please enter the time</label>
-          <br />
-          <input type="datetime-local" id="time" />
-          <br />
-          <input type="submit" />
+          <br></br>
+          {/*}Prompts the teacher to type what class its for*/}
+          <label for="class">Please enter the class</label>
+          <br></br>
+          <input type="text" id="class"></input>
+          <br></br>
+          {/*}Asks for the teacher to put in day and time they want their requirement */}
+          <label for="Time">Please enter the time</label>
+          <br></br>
+          <input type="datetime-local"></input>
+          <br></br>
+          <input type="submit"></input>
         </form>
         <nav>
           <ul>
