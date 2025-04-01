@@ -42,7 +42,7 @@ function App() {
         >
           Learn React
         </a>
-      
+      {/*}Drop down Menus for Different types of teacher requirements */}
         <form>
           <label for="requirements">Please enter the type of requirement</label>
           <br></br>
@@ -54,10 +54,12 @@ function App() {
             <option value="D section">D</option>
           </select>
           <br></br>
+          {/*}Prompts the teacher to type what class its for*/}
           <label for="class">Please enter the class</label>
           <br></br>
           <input type="text" id="class"></input>
           <br></br>
+          {/*}Asks for the teacher to put in day and time they want their requirement */}
           <label for="Time">Please enter the time</label>
           <br></br>
           <input type="datetime-local"></input>
