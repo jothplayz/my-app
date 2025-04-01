@@ -43,9 +43,27 @@ function App() {
           Learn React
         </a>
       
-        <input type="text">
-        
-        </input>
+        <form>
+          <label for="requirements">Please enter the type of requirement</label>
+          <br></br>
+          <select name="requirements" id="requirements">
+            <option value="all-school">All-School</option>
+            <option value="no block">No Class</option>
+            <option value="Q section">Q</option>
+            <option value="E section">E</option>
+            <option value="D section">D</option>
+          </select>
+          <br></br>
+          <label for="class">Please enter the class</label>
+          <br></br>
+          <input type="text" id="class"></input>
+          <br></br>
+          <label for="Time">Please enter the time</label>
+          <br></br>
+          <input type="datetime-local"></input>
+          <br></br>
+          <input type="submit"></input>
+        </form>
       </header>
     </div>
   );
