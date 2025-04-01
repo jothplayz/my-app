@@ -1,30 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
-// Import the functions you need from the SDKs you need
+import logo from "./logo.svg";
+import "./App.css";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AddRequirements from './pages/addrequirement.js';
+import Index from './pages/index.js';
+import Login from './pages/login.js';
+import Signup from './pages/signup.js';
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAISdb96KG820TSHtIyvUT_U5g1oxpT-YI",
   authDomain: "mams-schedule-app.firebaseapp.com",
   projectId: "mams-schedule-app",
   storageBucket: "mams-schedule-app.firebasestorage.app",
   messagingSenderId: "780706817346",
-  appId: "1:780706817346:web:4a3848b6980071d0fad4db"
+  appId: "1:780706817346:web:4a3848b6980071d0fad4db",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// Initialize Firestore
 const db = getFirestore(app);
 
 function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* Define routes for each page */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/add" element={<AddRequirements />} />
+        <Route path="/about" element={<Index />} />
+        <Route path="/contact" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </Router>
+  );
+}
 
-  const message = "Let's get diverse."
-  const teachers = ["Mrs. Wildfong ", "Ms. Small ", "Dr. Crowthers ", "Ms. Ludes ", "Mrs. Burns ", "Mrs. Chase ", "Mrs. Taricco ", "Mrs. Post ", "Ms. Liz"];
+// Define a separate HomePage component for the default route
+function HomePage() {
+  const message = "Let's get diverse.";
+  const teachers = [
+    "Mrs. Wildfong ",
+    "Ms. Small ",
+    "Dr. Crowthers ",
+    "Ms. Ludes ",
+    "Mrs. Burns ",
+    "Mrs. Chase ",
+    "Mrs. Taricco ",
+    "Mrs. Post ",
+    "Ms. Liz",
+  ];
+
   return (
     <div className="App">
       <header className="App-header">
@@ -42,10 +67,9 @@ function App() {
         >
           Learn React
         </a>
-      
         <form>
-          <label for="requirements">Please enter the type of requirement</label>
-          <br></br>
+          <label htmlFor="requirements">Please enter the type of requirement</label>
+          <br />
           <select name="requirements" id="requirements">
             <option value="all-school">All-School</option>
             <option value="no block">No Class</option>
@@ -53,17 +77,33 @@ function App() {
             <option value="E section">E</option>
             <option value="D section">D</option>
           </select>
-          <br></br>
-          <label for="class">Please enter the class</label>
-          <br></br>
-          <input type="text" id="class"></input>
-          <br></br>
-          <label for="Time">Please enter the time</label>
-          <br></br>
-          <input type="datetime-local"></input>
-          <br></br>
-          <input type="submit"></input>
+          <br />
+          <label htmlFor="class">Please enter the class</label>
+          <br />
+          <input type="text" id="class" />
+          <br />
+          <label htmlFor="time">Please enter the time</label>
+          <br />
+          <input type="datetime-local" id="time" />
+          <br />
+          <input type="submit" />
         </form>
+        <nav>
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/about">About</a>
+            </li>
+            <li>
+              <a href="/contact">Contact</a>
+            </li>
+            <li>
+              <a href="/signup">Other</a>
+            </li>
+          </ul>
+        </nav>
       </header>
     </div>
   );
