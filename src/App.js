@@ -1,4 +1,5 @@
-import logo from "./logo.svg";
+//import logo from "./logo.svg";
+//import logo from "./logo.svg";
 import "./App.css";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -36,6 +37,26 @@ function App() {
   );
 }
 
+function Nav() {
+  return (
+    <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/about">About</a>
+        </li>
+        <li>
+          <a href="/contact">Contact</a>
+        </li>
+        <li>
+          <a href="/signup">Other</a>
+        </li>
+      </ul>
+    </nav>
+  );
+}
 // Define a separate HomePage component for the default route
 function HomePage() {
   const message = "Let's get diverse.";
@@ -53,13 +74,14 @@ function HomePage() {
 
   return (
     <div className="App">
+      <Nav />
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <h1>Hello, {teachers}</h1>
         <h2>{message}</h2>
-      
         <form>
-          <label htmlFor="requirements">Please enter the type of requirement</label>
+          <label htmlFor="requirements">
+            Please enter the type of requirement
+          </label>
           <br />
           <select name="requirements" id="requirements">
             <option value="all-school">All-School</option>
@@ -81,22 +103,6 @@ function HomePage() {
           <br></br>
           <input type="submit"></input>
         </form>
-        <nav>
-          <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/about">About</a>
-            </li>
-            <li>
-              <a href="/contact">Contact</a>
-            </li>
-            <li>
-              <a href="/signup">Other</a>
-            </li>
-          </ul>
-        </nav>
       </header>
     </div>
   );
