@@ -102,4 +102,55 @@ function HomePage() {
   );
 }
 
+function MyForm() {
+  const [inputs, setInputs] = useState({});
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}))
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(inputs);
+    try {
+      const docRef = addDoc(collection(db, "requirements"), {
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label for="requirements">Please enter the type of requirement</label>
+          <br />
+          <select name="requirements" id="requirements">
+            <option value="all-school">All-School</option>
+            <option value="no block">No Class</option>
+            <option value="Q section">Q</option>
+            <option value="E section">E</option>
+            <option value="D section">D</option>
+          </select>
+          <br></br>
+          {/*}Prompts the teacher to type what class its for*/}
+          <label for="class">Please enter the class</label>
+          <br></br>
+          <input type="text" id="class" name="class"></input>
+          <br></br>
+          {/*}Asks for the teacher to put in day and time they want their requirement */}
+          <label for="Time">Please enter the time</label>
+          <br></br>
+          <input type="datetime-local" id="Time" name="Time"></input>
+          <br></br>
+          <input type="submit"></input>
+    </form>
+  )
+}
+
 export default App;
