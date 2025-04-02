@@ -46,12 +46,12 @@ function App() {
           {/*}Prompts the teacher to type what class its for*/}
           <label for="class">Please enter the class</label>
           <br></br>
-          <input type="text" id="class"></input>
+          <input type="text" id="class" name="class"></input>
           <br></br>
           {/*}Asks for the teacher to put in day and time they want their requirement */}
           <label for="Time">Please enter the time</label>
           <br></br>
-          <input type="datetime-local"></input>
+          <input type="datetime-local" id="Time" name="Time"></input>
           <br></br>
           <input type="submit"></input>
         </form>
