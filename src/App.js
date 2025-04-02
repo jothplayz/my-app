@@ -7,6 +7,7 @@ import AddRequirements from './pages/addrequirement.js';
 import Index from './pages/index.js';
 import Login from './pages/login.js';
 import Signup from './pages/signup.js';
+import { collection, addDoc } from "firebase/firestore"; 
 
 const firebaseConfig = {
   apiKey: "AIzaSyAISdb96KG820TSHtIyvUT_U5g1oxpT-YI",
@@ -39,14 +40,14 @@ function App() {
 function HomePage() {
   const message = "Let's get diverse.";
   const teachers = [
-    "Mrs. Wildfong ",
-    "Ms. Small ",
-    "Dr. Crowthers ",
-    "Ms. Ludes ",
-    "Mrs. Burns ",
-    "Mrs. Chase ",
-    "Mrs. Taricco ",
-    "Mrs. Post ",
+    "Mrs. Wildfong, ",
+    "Ms. Small, ",
+    "Dr. Crowthers, ",
+    "Ms. Ludes, ",
+    "Mrs. Burns, ",
+    "Mrs. Chase, ",
+    "Mrs. Taricco, ",
+    "Mrs. Post, and ",
     "Ms. Liz",
   ];
 
