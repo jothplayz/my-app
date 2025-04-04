@@ -75,32 +75,6 @@ function HomePage() {
       <header className="App-header">
         <h1>Hello, {teachers}</h1>
         <h2>{message}</h2>
-
-        {/* <form>
-          <label htmlFor="requirements">
-            Please enter the type of requirement
-          </label>
-          <br />
-          <select name="requirements" id="requirements">
-            <option value="all-school">All-School</option>
-            <option value="no block">No Class</option>
-            <option value="Q section">Q</option>
-            <option value="E section">E</option>
-            <option value="D section">D</option>
-          </select>
-          <br></br>
-          Prompts the teacher to type what class its for
-          <label for="class">Please enter the class</label>
-          <br></br>
-          <input type="text" id="class" name="class"></input>
-          <br></br>
-          Asks for the teacher to put in day and time they want their requirement
-          <label for="Time">Please enter the time</label>
-          <br></br>
-          <input type="datetime-local" id="Time" name="Time"></input>
-          <br></br>
-          <input type="submit"></input>
-        </form> */}
         {MyForm()}
       </header>
     </div>
@@ -142,12 +116,12 @@ function MyForm() {
             <option value="D section">D</option>
           </select>
           <br></br>
-          {/*}Prompts the teacher to type what class its for*/}
+          {/*Prompts the teacher to type what class its for*/}
           <label for="class">Please enter the class</label>
           <br></br>
           <input type="text" id="class" name="class" onChange={handleChange}></input>
           <br></br>
-          {/*}Asks for the teacher to put in day and time they want their requirement */}
+          {/*Asks for the teacher to put in day and time they want their requirement */}
           <label for="Time">Please enter the time</label>
           <br></br>
           <input type="datetime-local" id="Time" name="Time" onChange={handleChange}></input>
