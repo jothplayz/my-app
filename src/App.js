@@ -1,13 +1,15 @@
-import logo from "./logo.svg";
+//import logo from "./logo.svg";
 import "./App.css";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import AddRequirements from './pages/addrequirement.js';
 import Index from './pages/index.js';
 import Login from './pages/login.js';
 import Signup from './pages/signup.js';
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAISdb96KG820TSHtIyvUT_U5g1oxpT-YI",
@@ -35,7 +37,6 @@ function App() {
     </Router>
   );
 }
-
 // Define a separate HomePage component for the default route
 function HomePage() {
   const message = "Let's get diverse.";
@@ -50,16 +51,33 @@ function HomePage() {
     "Mrs. Post, and ",
     "Ms. Liz",
   ];
+  const MyNavbar = () => (
+    <Navbar bg="dark" variant="dark" expand="lg">
+      <Container>
+        <Navbar.Brand as={Link} to="/">MyBrand</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link as={Link} to="/add">Add</Nav.Link>
+            <Nav.Link as={Link} to="/about">About</Nav.Link>
+            <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+            <Nav.Link as={Link} to="/signup">Signup</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 
   return (
     <div className="App">
+      {MyNavbar()}
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <h1>Hello, {teachers}</h1>
         <h2>{message}</h2>
-      
         <form>
-          <label htmlFor="requirements">Please enter the type of requirement</label>
+          <label htmlFor="requirements">
+            Please enter the type of requirement
+          </label>
           <br />
           <select name="requirements" id="requirements">
             <option value="all-school">All-School</option>
@@ -81,22 +99,6 @@ function HomePage() {
           <br></br>
           <input type="submit"></input>
         </form>
-        <nav>
-          <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/about">About</a>
-            </li>
-            <li>
-              <a href="/contact">Contact</a>
-            </li>
-            <li>
-              <a href="/signup">Other</a>
-            </li>
-          </ul>
-        </nav>
       </header>
     </div>
   );
