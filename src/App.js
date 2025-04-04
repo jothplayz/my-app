@@ -10,6 +10,7 @@ import Login from './pages/login.js';
 import Signup from './pages/signup.js';
 import { collection, addDoc } from "firebase/firestore";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from 'react';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAISdb96KG820TSHtIyvUT_U5g1oxpT-YI",
@@ -74,7 +75,8 @@ function HomePage() {
       <header className="App-header">
         <h1>Hello, {teachers}</h1>
         <h2>{message}</h2>
-        <form>
+
+        {/* <form>
           <label htmlFor="requirements">
             Please enter the type of requirement
           </label>
@@ -87,18 +89,19 @@ function HomePage() {
             <option value="D section">D</option>
           </select>
           <br></br>
-          {/*}Prompts the teacher to type what class its for*/}
+          Prompts the teacher to type what class its for
           <label for="class">Please enter the class</label>
           <br></br>
           <input type="text" id="class" name="class"></input>
           <br></br>
-          {/*}Asks for the teacher to put in day and time they want their requirement */}
+          Asks for the teacher to put in day and time they want their requirement
           <label for="Time">Please enter the time</label>
           <br></br>
           <input type="datetime-local" id="Time" name="Time"></input>
           <br></br>
           <input type="submit"></input>
-        </form>
+        </form> */}
+        {MyForm()}
       </header>
     </div>
   );
@@ -115,12 +118,11 @@ function MyForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(inputs);
     try {
       const docRef = addDoc(collection(db, "requirements"), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
+        Type: inputs.requirements,
+        Class: inputs.class,
+        Time: inputs.Time
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
@@ -132,7 +134,7 @@ function MyForm() {
     <form onSubmit={handleSubmit}>
       <label for="requirements">Please enter the type of requirement</label>
           <br />
-          <select name="requirements" id="requirements">
+          <select name="requirements" id="requirements" onChange={handleChange}>
             <option value="all-school">All-School</option>
             <option value="no block">No Class</option>
             <option value="Q section">Q</option>
@@ -143,12 +145,12 @@ function MyForm() {
           {/*}Prompts the teacher to type what class its for*/}
           <label for="class">Please enter the class</label>
           <br></br>
-          <input type="text" id="class" name="class"></input>
+          <input type="text" id="class" name="class" onChange={handleChange}></input>
           <br></br>
           {/*}Asks for the teacher to put in day and time they want their requirement */}
           <label for="Time">Please enter the time</label>
           <br></br>
-          <input type="datetime-local" id="Time" name="Time"></input>
+          <input type="datetime-local" id="Time" name="Time" onChange={handleChange}></input>
           <br></br>
           <input type="submit"></input>
     </form>
