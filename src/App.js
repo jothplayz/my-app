@@ -92,6 +92,7 @@ function MyForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    alert(inputs);
     try {
       const docRef = addDoc(collection(db, "requirements"), {
         Type: inputs.requirements,
@@ -106,23 +107,24 @@ function MyForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label for="requirements">Please enter the type of requirement</label>
+      <label htmlFor="requirements">Please enter the type of requirement</label>
           <br />
           <select name="requirements" id="requirements" onChange={handleChange}>
-            <option value="all-school">All-School</option>
-            <option value="no block">No Class</option>
-            <option value="Q section">Q</option>
-            <option value="E section">E</option>
-            <option value="D section">D</option>
+            <option value="None">Select an option...</option>
+            <option value="All-School">All-School</option>
+            <option value="No Block">No Class</option>
+            <option value="Q Section">Q</option>
+            <option value="E Section">E</option>
+            <option value="D Section">D</option>
           </select>
           <br></br>
           {/*Prompts the teacher to type what class its for*/}
-          <label for="class">Please enter the class</label>
+          <label htmlFor="class">Please enter the class</label>
           <br></br>
           <input type="text" id="class" name="class" onChange={handleChange}></input>
           <br></br>
           {/*Asks for the teacher to put in day and time they want their requirement */}
-          <label for="Time">Please enter the time</label>
+          <label htmlFor="Time">Please enter the time</label>
           <br></br>
           <input type="datetime-local" id="Time" name="Time" onChange={handleChange}></input>
           <br></br>
