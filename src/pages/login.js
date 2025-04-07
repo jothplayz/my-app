@@ -1,19 +1,20 @@
-import Dropdown from 'react-bootstrap/Dropdown';
+import React from "react";
 
-function BasicExample() {
+function Login() {
   return (
-    <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Dropdown Button
-      </Dropdown.Toggle>
- 
-      <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">All School</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Selected Days</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Etc</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+    <div>
+      <h1>Login Page</h1>
+      <form>
+        <label htmlFor="username">Username:</label>
+        <input type="text" id="username" name="username" />
+        <br />
+        <label htmlFor="password">Password:</label>
+        <input type="password" id="password" name="password" />
+        <br />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 }
 
-export default BasicExample;
+export default Login;

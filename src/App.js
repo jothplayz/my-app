@@ -52,6 +52,8 @@ function HomePage() {
     "Mrs. Post, and ",
     "Ms. Liz",
   ];
+  
+  
   const MyNavbar = () => (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -60,8 +62,8 @@ function HomePage() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/add">Add</Nav.Link>
-            <Nav.Link as={Link} to="/about">About</Nav.Link>
-            <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+            <Nav.Link as={Link} to="/about">Index</Nav.Link>
+            <Nav.Link as={Link} to="/contact">Login</Nav.Link>
             <Nav.Link as={Link} to="/signup">Signup</Nav.Link>
           </Nav>
         </Navbar.Collapse>
@@ -69,9 +71,10 @@ function HomePage() {
     </Navbar>
   );
 
+  
   return (
-    <div className="App">
-      {MyNavbar()}
+    <div>
+      <MyNavbar />
       <header className="App-header">
         <h1>Hello, {teachers}</h1>
         <h2>{message}</h2>
