@@ -2,7 +2,7 @@ import React from "react";
 
 function Login() {
   return (
-    <div>
+    <div style={{ textAlign: "center" }} className="login-container">
       <h1>Login Page</h1>
       <form>
         <label htmlFor="username">Username:</label>
