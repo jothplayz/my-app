@@ -92,7 +92,6 @@ function MyForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(inputs);
     try {
       const docRef = addDoc(collection(db, "requirements"), {
         Type: inputs.requirements,
@@ -100,8 +99,10 @@ function MyForm() {
         Time: inputs.Time
       });
       console.log("Document written with ID: ", docRef.id);
+      alert("Your requirement has been added.");
     } catch (e) {
       console.error("Error adding document: ", e);
+      alert("Sorry, your requirement didn't go through. Try again?");
     }
   }
 
@@ -118,7 +119,7 @@ function MyForm() {
             <option value="D Section">D</option>
           </select>
           <br></br>
-          {/*Prompts the teacher to type what class its for*/}
+          {/*Prompts the teacher to type what class it's for */}
           <label htmlFor="class">Please enter the class</label>
           <br></br>
           <input type="text" id="class" name="class" onChange={handleChange}></input>
