@@ -85,6 +85,7 @@ function HomePage() {
 }
 
 function MyForm() {
+  // code adapted from Firebase docs
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -97,13 +98,17 @@ function MyForm() {
     event.preventDefault();
     try {
       const docRef = addDoc(collection(db, "requirements"), {
+        // adds a requirement with the selected values to the Firebase storage
         Type: inputs.requirements,
         Class: inputs.class,
         Time: inputs.Time
       });
+      // add developer info and alert the user
       console.log("Document written with ID: ", docRef.id);
       alert("Your requirement has been added.");
     } catch (e) {
+      // handle problems adding the requirement
+      // add developer info and alert the user
       console.error("Error adding document: ", e);
       alert("Sorry, your requirement didn't go through. Try again?");
     }
