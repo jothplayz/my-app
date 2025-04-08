@@ -1,9 +1,12 @@
 import React from "react";
+import Button from 'react-bootstrap/Button';
+
+
 
 function Login() {
   return (
-    <div style={{ textAlign: "center" }} className="login-container">
-      <h1>Login Page</h1>
+    <div style={{ textAlign: "center", alignItems: "center", justifyContent: "center"}} className="login-container">
+      <h1>Login</h1>
       <form>
         <label htmlFor="username">Username:</label>
         <input type="text" id="username" name="username" />
@@ -11,7 +14,8 @@ function Login() {
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" name="password" />
         <br />
-        <button type="submit">Login</button>
+        <Button variant="primary" size="sm">Enter</Button>
+
       </form>
     </div>
   );
