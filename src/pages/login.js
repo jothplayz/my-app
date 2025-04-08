@@ -63,7 +63,8 @@ function LoginForm() {
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" name="password" />
         <br />
-        <button type="submit">Login</button>
+        <Button variant="primary" size="sm">Enter</Button>
+
       </form>
   )
 }
