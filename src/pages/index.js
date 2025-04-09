@@ -1,6 +1,6 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 
-function BasicExample() {
+function Index() {
   return (
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -16,4 +16,4 @@ function BasicExample() {
   );
 }
 
-export default BasicExample;
+export default Index;

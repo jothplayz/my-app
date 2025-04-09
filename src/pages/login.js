@@ -3,10 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from 'react';
 import "../App.css";
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
 import "bootstrap/dist/css/bootstrap.min.css";
-import MyNavbar from "../App";
-//import Button from 'react-bootstrap/Button';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAISdb96KG820TSHtIyvUT_U5g1oxpT-YI",
@@ -18,13 +15,11 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 const auth = getAuth();
 
 
 function Login() {
   return (
-    MyNavbar(),
     <div style={{ textAlign: "center" }} className="login-container">
       <h1>Login Page</h1>
       <LoginForm />
@@ -54,8 +49,8 @@ function LoginForm() {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.error("Error adding document: ", error);
-      alert("Sorry, there was an error.");
+      console.error("Error signing in: ", error);
+      alert("Unable to sign in. Check that username and password are correctly typed, then try again. \n\n" + "The error generated was: " + errorMessage);
     });
   }
 
@@ -76,24 +71,5 @@ This is the LoginForm component that handles the login functionality.
 It uses Firebase Authentication to sign in users with email and password.
 The handleChange function updates the state as the user types in the input fields.
 The handleSubmit function processes the form submission and attempts to sign in the user.
-
-function Login() {
-  return (
-    MyNavbar(),
-    <div style={{ textAlign: "center", alignItems: "center", justifyContent: "center"}} className="login-container">
-      <h1>Login</h1>
-      <form>
-        <label htmlFor="username">Username:</label>
-        <input type="text" id="username" name="username" />
-        <br />
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" name="password" />
-        <br />
-        <button type="submit">Login</button>
-
-      </form>
-    </div>
-  )
-}
 */
 export default Login;
