@@ -27,16 +27,6 @@ function Login() {
     MyNavbar(),
     <div style={{ textAlign: "center" }} className="login-container">
       <h1>Login Page</h1>
-      <form>
-        <label htmlFor="username">Username:</label>
-        <input type="text" id="username" name="username" />
-        <br />
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" name="password" />
-        <br />
-        <button type="submit">Login</button>
-
-      </form>
       <LoginForm />
     </div>
   );
@@ -68,6 +58,18 @@ function LoginForm() {
       alert("Sorry, there was an error.");
     });
   }
+
+  return (
+    <form onSubmit={handleSubmit}>
+        <label htmlFor="email">Username:</label>
+        <input type="text" id="email" name="email" />
+        <br />
+        <label htmlFor="password">Password:</label>
+        <input type="password" id="password" name="password" />
+        <br />
+        <button type="submit">Login</button>
+      </form>
+  )
 }
 /*
 This is the LoginForm component that handles the login functionality.
