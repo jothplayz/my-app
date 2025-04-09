@@ -1,16 +1,15 @@
-//import logo from "./logo.svg";
 import "./App.css";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import AddRequirements from './pages/addrequirement.js';
-import Index from './pages/index.js';
-import Login from './pages/login.js';
-import Signup from './pages/signup.js';
+import AddRequirements from "./pages/addrequirement.js";
+import Index from "./pages/index.js";
+import Login from "./pages/login.js";
+import Signup from "./pages/signup.js";
 import { collection, addDoc } from "firebase/firestore";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from 'react';
+import { useState } from "react";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAISdb96KG820TSHtIyvUT_U5g1oxpT-YI",
@@ -27,8 +26,9 @@ const db = getFirestore(app);
 function App() {
   return (
     <Router>
+      {/* MyNavbar is placed outside of Routes so it appears on all pages */}
+      <MyNavbar />
       <Routes>
-        {/* Define routes for each page */}
         <Route path="/" element={<HomePage />} />
         <Route path="/add" element={<AddRequirements />} />
         <Route path="/about" element={<Index />} />
@@ -38,23 +38,9 @@ function App() {
     </Router>
   );
 }
-// Define a separate HomePage component for the default route
-function HomePage() {
-  const message = "Let's get diverse.";
-  const teachers = [
-    "Mrs. Wildfong, ",
-    "Ms. Small, ",
-    "Dr. Crowthers, ",
-    "Ms. Ludes, ",
-    "Mrs. Burns, ",
-    "Mrs. Chase, ",
-    "Mrs. Taricco, ",
-    "Mrs. Post, and ",
-    "Ms. Liz",
-  ];
-  
-  
-  const MyNavbar = () => (
+
+function MyNavbar() {
+  return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">MyBrand</Navbar.Brand>
@@ -70,11 +56,24 @@ function HomePage() {
       </Container>
     </Navbar>
   );
+}
 
-  
+function HomePage() {
+  const message = "Let's get diverse.";
+  const teachers = [
+    "Mrs. Wildfong, ",
+    "Ms. Small, ",
+    "Dr. Crowthers, ",
+    "Ms. Ludes, ",
+    "Mrs. Burns, ",
+    "Mrs. Chase, ",
+    "Mrs. Taricco, ",
+    "Mrs. Post, and ",
+    "Ms. Liz",
+  ];
+
   return (
     <div>
-      <MyNavbar />
       <header className="App-header">
         <h1>Hello, {teachers}</h1>
         <h2>{message}</h2>
@@ -91,8 +90,8 @@ function MyForm() {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs(values => ({...values, [name]: value}))
-  }
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -101,7 +100,7 @@ function MyForm() {
         // adds a requirement with the selected values to the Firebase storage
         Type: inputs.requirements,
         Class: inputs.class,
-        Time: inputs.Time
+        Time: inputs.Time,
       });
       // add developer info and alert the user
       console.log("Document written with ID: ", docRef.id);
@@ -112,34 +111,44 @@ function MyForm() {
       console.error("Error adding document: ", e);
       alert("Sorry, your requirement didn't go through. Try again?");
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="requirements">Please enter the type of requirement</label>
-          <br />
-          <select name="requirements" id="requirements" onChange={handleChange}>
-            <option value="None">Select an option...</option>
-            <option value="All-School">All-School</option>
-            <option value="No Block">No Class</option>
-            <option value="Q Section">Q</option>
-            <option value="E Section">E</option>
-            <option value="D Section">D</option>
-          </select>
-          <br></br>
-          {/*Prompts the teacher to type what class it's for */}
-          <label htmlFor="class">Please enter the class</label>
-          <br></br>
-          <input type="text" id="class" name="class" onChange={handleChange}></input>
-          <br></br>
-          {/*Asks for the teacher to put in day and time they want their requirement */}
-          <label htmlFor="Time">Please enter the time</label>
-          <br></br>
-          <input type="datetime-local" id="Time" name="Time" onChange={handleChange}></input>
-          <br></br>
-          <input type="submit"></input>
+      <br />
+      <select name="requirements" id="requirements" onChange={handleChange}>
+        <option value="None">Select an option...</option>
+        <option value="All-School">All-School</option>
+        <option value="No Block">No Class</option>
+        <option value="Q Section">Q</option>
+        <option value="E Section">E</option>
+        <option value="D Section">D</option>
+      </select>
+      <br></br>
+      {/*Prompts the teacher to type what class it's for */}
+      <label htmlFor="class">Please enter the class</label>
+      <br></br>
+      <input
+        type="text"
+        id="class"
+        name="class"
+        onChange={handleChange}
+      ></input>
+      <br></br>
+      {/*Asks for the teacher to put in day and time they want their requirement */}
+      <label htmlFor="Time">Please enter the time</label>
+      <br></br>
+      <input
+        type="datetime-local"
+        id="Time"
+        name="Time"
+        onChange={handleChange}
+      ></input>
+      <br></br>
+      <input type="submit"></input>
     </form>
-  )
+  );
 }
 
 export default App;
