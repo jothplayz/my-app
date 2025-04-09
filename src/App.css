@@ -28,6 +28,12 @@
 .App-link {
   color: #61dafb;
 }
+.title {
+  color: black;
+  text-align: center;
+  font-size: 50px;
+  padding: 20px;
+}
 
 @keyframes App-logo-spin {
   from {
