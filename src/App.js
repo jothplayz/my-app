@@ -25,11 +25,13 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
+var currentUser = null;
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
-    const uid = user.uid;
+    currentUser = user.email;
     // ...
   } else {
     // User is signed out
@@ -89,7 +91,7 @@ function HomePage() {
   return (
     <div>
       <header className="App-header">
-        <h1>Hello, {teachers}</h1>
+        <h1>Hello, {currentUser}</h1>
         <h2>{message}</h2>
         {MyForm()}
       </header>
