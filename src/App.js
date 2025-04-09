@@ -32,7 +32,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/add" element={<AddRequirements />} />
         <Route path="/about" element={<Index />} />
-        <Route path="/contact" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
     </Router>
@@ -49,7 +49,7 @@ function MyNavbar() {
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/add">Add</Nav.Link>
             <Nav.Link as={Link} to="/about">Index</Nav.Link>
-            <Nav.Link as={Link} to="/contact">Login</Nav.Link>
+            <Nav.Link as={Link} to="/login">Login</Nav.Link>
             <Nav.Link as={Link} to="/signup">Signup</Nav.Link>
           </Nav>
         </Navbar.Collapse>
