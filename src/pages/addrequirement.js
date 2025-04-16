@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton'; //Allows for custimization of the dropdown
 
+
 function FirstReqPage() {
   return (
     <div>
@@ -20,24 +21,6 @@ function FirstReqPage() {
     </div>
   </div>
   );
-}
-function AllSchool(){
-return (
-  <div>
-    <p class = "title">All-School ____</p>
-    <div class = "dropdownstyle">
-    <DropdownButton
-     id="dropdown-basic-button" 
-     title="Reason..."
-      size="lg"
-    >
-      <Dropdown.Item href="#/action-1">Class Project</Dropdown.Item>
-      <Dropdown.Item href="#/action-2">Assessment</Dropdown.Item>
-      <Dropdown.Item href="#/action-3">Other</Dropdown.Item>
-    </DropdownButton>
-    </div>
-  </div>
-);
 }
 
 export default FirstReqPage;
