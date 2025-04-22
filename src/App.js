@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+//Creates the firebase that stores information
 const firebaseConfig = {
   apiKey: "AIzaSyAISdb96KG820TSHtIyvUT_U5g1oxpT-YI",
   authDomain: "mams-schedule-app.firebaseapp.com",
@@ -38,7 +39,7 @@ onAuthStateChanged(auth, (user) => {
     // ...
   }
 });
-
+//Creates routes for the navbar created in the method below to use
 function App() {
   return (
     <Router>
@@ -54,12 +55,12 @@ function App() {
     </Router>
   );
 }
-
+//Creates the Navbar to go the the four pages created
 function MyNavbar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to="/">MyBrand</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Mass Academy Schedule App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
@@ -73,7 +74,7 @@ function MyNavbar() {
     </Navbar>
   );
 }
-
+//Displays opening screen
 function HomePage() {
   const message = "Let's get diverse.";
   const teachers = [

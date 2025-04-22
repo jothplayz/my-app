@@ -35,8 +35,7 @@
   padding: 20px;
 }
 .dropdownstyle {
-  position: relative;
-  display: inline-block;
+text-align: center;
 }
 
 @keyframes App-logo-spin {
