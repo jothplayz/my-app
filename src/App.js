@@ -47,7 +47,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/add" element={<AddRequirements />} />
-        <Route path="/about" element={<Index />} />
+        <Route path="/index" element={<Index />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
@@ -64,7 +64,7 @@ function MyNavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/add">Add</Nav.Link>
-            <Nav.Link as={Link} to="/about">Index</Nav.Link>
+            <Nav.Link as={Link} to="/index">Index</Nav.Link>
             <Nav.Link as={Link} to="/login">Login</Nav.Link>
             <Nav.Link as={Link} to="/signup">Signup</Nav.Link>
           </Nav>
@@ -77,14 +77,14 @@ function MyNavbar() {
 function HomePage() {
   const message = "Let's get diverse.";
   const teachers = [
-    "Mrs. Wildfong, ",
-    "Ms. Small, ",
-    "Dr. Crowthers, ",
-    "Ms. Ludes, ",
-    "Mrs. Burns, ",
-    "Mrs. Chase, ",
-    "Mrs. Taricco, ",
-    "Mrs. Post, and ",
+    "Mrs. Wildfong",
+    "Ms. Small",
+    "Dr. Crowthers",
+    "Ms. Ludes",
+    "Mrs. Burns",
+    "Mrs. Chase",
+    "Mrs. Taricco",
+    "Mrs. Post",
     "Ms. Liz",
   ];
 
