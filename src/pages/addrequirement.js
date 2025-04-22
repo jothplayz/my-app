@@ -26,9 +26,7 @@ function FirstReqPage() {
                 type="datetime-local"
                 id="Time"
                 name="Time"
-                onChange={
-                  (e) => setSelectedOption(e.target.value)
-                }
+                onChange={(e) => setSelectedOption(e.target.value)}
               ></input>
               <br></br>
               <label htmlFor="Time">For what Reason</label>
@@ -85,6 +83,16 @@ function FirstReqPage() {
                 />
                 <label htmlFor="2hrs15mins"> 2hrs 15mins</label>
               </div>
+              <br></br>
+              <button type="button" onClick={() => setSelectedOption(null)}>
+                Back
+              </button>
+              <button
+                type="button"
+                onClick={() => alert("Thank you for your submission!")}
+              >
+                Submit
+              </button>
             </form>
           </div>
         );
@@ -102,9 +110,7 @@ function FirstReqPage() {
                 type="datetime-local"
                 id="Time"
                 name="Time"
-                onChange={
-                  (e) => setSelectedOption(e.target.value)
-                }
+                onChange={(e) => setSelectedOption(e.target.value)}
               ></input>
               <br></br>
               <label htmlFor="Time">For what Reason</label>
@@ -161,13 +167,98 @@ function FirstReqPage() {
                 />
                 <label htmlFor="2hrs15mins"> 2hrs 15mins</label>
               </div>
+              <br></br>
+              <button type="button" onClick={() => setSelectedOption(null)}>
+                Back
+              </button>
+              <button
+                type="button"
+                onClick={() => alert("Thank you for your submission!")}
+              >
+                Submit
+              </button>
             </form>
           </div>
-
         );
         //Changes the screen to the specific-section requirement page
       case "specific-section":
-        return <h1>Specific Section Request</h1>;
+        return (
+          <div className="App-header">
+            <header>
+              <h1>Specific Section</h1>
+            </header>
+            <form>
+              <label htmlFor="Time">Please enter the day</label>
+              <br></br>
+              
+              <br></br>
+              <label htmlFor="Time">For what Reason</label>
+              <br></br>
+              <select
+                name="requirements"
+                id="requirements"
+                onChange={(e) => setSelectedOption(e.target.value)}
+              >
+                <option value="None">Select an option...</option>
+                <option value="assessment">Intermediate Spanish</option>
+                <option value="other">I+A French</option>
+                <option value="other">Advanced Spanish</option>
+              </select>
+              <br></br>
+              <label htmlFor="class">How much time will you need?</label>
+              <br></br>
+              <div>
+                <input type="radio" id="1hr" name="time-needed" value="1hr" />
+                <label htmlFor="1hr"> 1hr</label>
+                <br></br>
+                <input
+                  type="radio"
+                  id="1hr15mins"
+                  name="time-needed"
+                  value="1hr 15mins"
+                />
+                <label htmlFor="1hr15mins"> 1hr 15mins</label>
+                <br></br>
+                <input
+                  type="radio"
+                  id="1hr30mins"
+                  name="time-needed"
+                  value="1hr 30mins"
+                />
+                <label htmlFor="1hr30mins"> 1hr 30mins</label>
+                <br></br>
+                <input
+                  type="radio"
+                  id="1hr45mins"
+                  name="time-needed"
+                  value="1hr 45mins"
+                />
+                <label htmlFor="1hr45mins"> 1hr 45mins</label>
+                <br></br>
+                <input type="radio" id="2hrs" name="time-needed" value="2hrs" />
+                <label htmlFor="2hrs"> 2hrs</label>
+                <br></br>
+                <input
+                  type="radio"
+                  id="2hrs15mins"
+                  name="time-needed"
+                  value="2hrs 15mins"
+                />
+                <label htmlFor="2hrs15mins"> 2hrs 15mins</label>
+              </div>
+              <br></br>
+              <button type="button" onClick={() => setSelectedOption(null)}>
+                Back
+              </button>
+              <button
+                type="button"
+                onClick={() => alert("Thank you for your submission!")}
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        );
       case "miscellaneous":
         return <h1>Miscellaneous Requirements</h1>;
       default:

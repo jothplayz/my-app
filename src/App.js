@@ -60,7 +60,7 @@ function MyNavbar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to="/">MyBrand</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Mass Academy Schedule App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
