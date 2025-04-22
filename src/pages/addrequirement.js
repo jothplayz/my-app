@@ -10,7 +10,7 @@ function FirstReqPage() {
   const handleSelect = (eventKey) => {
     setSelectedOption(eventKey);
   };
-
+//Changes the screen to the all-school requirement page
   const renderContent = () => {
     switch (selectedOption) {
       case "all-school":
@@ -88,7 +88,7 @@ function FirstReqPage() {
             </form>
           </div>
         );
-
+//Changes the screen to the unavailible requirement page
       case "unavailable":
         return (
           <div className="App-header">
@@ -165,7 +165,7 @@ function FirstReqPage() {
           </div>
 
         );
-        
+        //Changes the screen to the specific-section requirement page
       case "specific-section":
         return <h1>Specific Section Request</h1>;
       case "miscellaneous":
