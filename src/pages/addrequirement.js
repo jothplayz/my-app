@@ -262,6 +262,7 @@ function FirstReqPage() {
       case "miscellaneous":
         return <h1>Miscellaneous Requirements</h1>;
       default:
+        //The first screen the user sees when selecting add a requirement
         return (
           <div>
             <p className="title">
