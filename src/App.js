@@ -138,20 +138,23 @@ function MyForm() {
         <option value="None">Select an option...</option>
         <option value="All-School">All-School</option>
         <option value="No Block">No Class</option>
-        <option value="Q Section">Q</option>
-        <option value="E Section">E</option>
-        <option value="D Section">D</option>
+        <option value="Q Section">Q Section</option>
+        <option value="E Section">E Section</option>
+        <option value="D Section">D Section</option>
       </select>
       <br></br>
       {/*Prompts the teacher to type what class it's for */}
       <label htmlFor="class">Please enter the class</label>
       <br></br>
-      <input
-        type="text"
-        id="class"
-        name="class"
-        onChange={handleChange}
-      ></input>
+      <select name="class" id="class" onChange={handleChange}>
+        <option value="None">Select an option...</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Humanities">Humanities</option>
+        <option value="Language">Language</option>
+        <option value="Math Modeling">Math Modeling</option>
+        <option value="Physics">Physics</option>
+        <option value="STEM">STEM</option>
+      </select>
       <br></br>
       {/*Asks for the teacher to put in day and time they want their requirement */}
       <label htmlFor="Time">Please enter the time</label>
