@@ -83,7 +83,9 @@ function FirstReqPage() {
                 />
                 <label htmlFor="2hrs15mins"> 2hrs 15mins</label>
               </div>
-              <label htmlFor="class">Would you also like a normal class this day?</label>
+              <label htmlFor="class">
+                Would you also like a normal class this day?
+              </label>
               <div>
                 <input type="radio" id="yes" name="normal-class" value="yes" />
                 <label htmlFor="yes"> Yes</label>
@@ -281,9 +283,9 @@ function FirstReqPage() {
             </header>
             <form>
               <input
-                type="datetime-local"
-                id="Time"
-                name="Time"
+                type="date"
+                id="Date"
+                name="Date"
                 onChange={(e) => setSelectedOption(e.target.value)}
               ></input>
             </form>
@@ -310,9 +312,7 @@ function FirstReqPage() {
                 <Dropdown.Item eventKey="specific-section">
                   Specific Section Request
                 </Dropdown.Item>
-                <Dropdown.Item eventKey="No-XYZ">
-                  No XYZ Day
-                </Dropdown.Item>
+                <Dropdown.Item eventKey="No-XYZ">No XYZ Day</Dropdown.Item>
               </DropdownButton>
             </div>
           </div>
