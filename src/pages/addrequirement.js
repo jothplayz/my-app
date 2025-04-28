@@ -10,7 +10,7 @@ function FirstReqPage() {
   const handleSelect = (eventKey) => {
     setSelectedOption(eventKey);
   };
-//Changes the screen to the all-school requirement page
+  //Changes the screen to the all-school requirement page
   const renderContent = () => {
     switch (selectedOption) {
       case "all-school":
@@ -96,7 +96,7 @@ function FirstReqPage() {
             </form>
           </div>
         );
-//Changes the screen to the unavailible requirement page
+      //Changes the screen to the unavailible requirement page
       case "unavailable":
         return (
           <div className="App-header">
@@ -180,7 +180,7 @@ function FirstReqPage() {
             </form>
           </div>
         );
-        //Changes the screen to the specific-section requirement page
+      //Changes the screen to the specific-section requirement page
       case "specific-section":
         return (
           <div className="App-header">
@@ -188,15 +188,11 @@ function FirstReqPage() {
               <h1>Specific Section</h1>
             </header>
             <form>
-              <label htmlFor="Time">Please enter the day</label>
-              <br></br>
-              
-              <br></br>
-              <label htmlFor="Time">For what Reason</label>
+              <label htmlFor="Time">What Section?</label>
               <br></br>
               <select
-                name="requirements"
-                id="requirements"
+                name="section"
+                id="section"
                 onChange={(e) => setSelectedOption(e.target.value)}
               >
                 <option value="None">Select an option...</option>
@@ -205,46 +201,56 @@ function FirstReqPage() {
                 <option value="other">Advanced Spanish</option>
               </select>
               <br></br>
-              <label htmlFor="class">How much time will you need?</label>
+              <label htmlFor="class">When do you want this section?</label>
               <br></br>
               <div>
-                <input type="radio" id="1hr" name="time-needed" value="1hr" />
-                <label htmlFor="1hr"> 1hr</label>
+                <input
+                  type="radio"
+                  id="block1"
+                  name="time-needed"
+                  value="Block 1"
+                />
+                <label htmlFor="block1"> Block 1</label>
                 <br></br>
                 <input
                   type="radio"
-                  id="1hr15mins"
+                  id="block2"
                   name="time-needed"
-                  value="1hr 15mins"
+                  value="Block 2"
                 />
-                <label htmlFor="1hr15mins"> 1hr 15mins</label>
+                <label htmlFor="block2"> Block 2</label>
                 <br></br>
                 <input
                   type="radio"
-                  id="1hr30mins"
+                  id="block3"
                   name="time-needed"
-                  value="1hr 30mins"
+                  value="Block 3"
                 />
-                <label htmlFor="1hr30mins"> 1hr 30mins</label>
+                <label htmlFor="block3"> Block 3</label>
                 <br></br>
                 <input
                   type="radio"
-                  id="1hr45mins"
+                  id="block4"
                   name="time-needed"
-                  value="1hr 45mins"
+                  value="Block 4"
                 />
-                <label htmlFor="1hr45mins"> 1hr 45mins</label>
-                <br></br>
-                <input type="radio" id="2hrs" name="time-needed" value="2hrs" />
-                <label htmlFor="2hrs"> 2hrs</label>
+                <label htmlFor="block4"> Block 4</label>
                 <br></br>
                 <input
                   type="radio"
-                  id="2hrs15mins"
+                  id="block5"
                   name="time-needed"
-                  value="2hrs 15mins"
+                  value="Block 5"
                 />
-                <label htmlFor="2hrs15mins"> 2hrs 15mins</label>
+                <label htmlFor="block5"> Block 5</label>
+                <br></br>
+                <input
+                  type="radio"
+                  id="block6"
+                  name="time-needed"
+                  value="Block 6"
+                />
+                <label htmlFor="block6"> Block 6</label>
               </div>
               <br></br>
               <button type="button" onClick={() => setSelectedOption(null)}>
