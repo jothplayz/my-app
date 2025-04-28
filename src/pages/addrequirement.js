@@ -83,6 +83,14 @@ function FirstReqPage() {
                 />
                 <label htmlFor="2hrs15mins"> 2hrs 15mins</label>
               </div>
+              <label htmlFor="class">Would you also like a normal class this day?</label>
+              <div>
+                <input type="radio" id="yes" name="normal-class" value="yes" />
+                <label htmlFor="yes"> Yes</label>
+                <br></br>
+                <input type="radio" id="no" name="normal-class" value="no" />
+                <label htmlFor="no"> No</label>
+              </div>
               <br></br>
               <button type="button" onClick={() => setSelectedOption(null)}>
                 Back
@@ -265,8 +273,22 @@ function FirstReqPage() {
             </form>
           </div>
         );
-      case "miscellaneous":
-        return <h1>Miscellaneous Requirements</h1>;
+      case "No-XYZ":
+        return (
+          <div className="App-header">
+            <header>
+              <h1>What day do you not want XYZ?</h1>
+            </header>
+            <form>
+              <input
+                type="datetime-local"
+                id="Time"
+                name="Time"
+                onChange={(e) => setSelectedOption(e.target.value)}
+              ></input>
+            </form>
+          </div>
+        );
       default:
         //The first screen the user sees when selecting add a requirement
         return (
@@ -288,8 +310,8 @@ function FirstReqPage() {
                 <Dropdown.Item eventKey="specific-section">
                   Specific Section Request
                 </Dropdown.Item>
-                <Dropdown.Item eventKey="miscellaneous">
-                  Miscellaneous
+                <Dropdown.Item eventKey="No-XYZ">
+                  No XYZ Day
                 </Dropdown.Item>
               </DropdownButton>
             </div>
