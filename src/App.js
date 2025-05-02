@@ -39,6 +39,7 @@ onAuthStateChanged(auth, (user) => {
     // ...
   }
 });
+
 //Creates routes for the navbar created in the method below to use
 function App() {
   return (
@@ -76,7 +77,7 @@ function MyNavbar() {
 }
 //Displays opening screen
 function HomePage() {
-  const message = "Let's get diverse.";
+  const message = "Welcome to the Mass Academy schedule generator. \n If you have not logged in yet, please visit the Login page now. \n To add a requirement, go to the Add page. \n To view all currently added requirements, go to the Index page.";
   const teachers = [
     "Mrs. Wildfong",
     "Ms. Small",
