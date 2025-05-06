@@ -385,9 +385,9 @@ function FirstReqPage() {
                 onChange={handleSelectChange}
               >
                 <option value="None">Select an option...</option>
-                <option value="Q Section">Intermediate Spanish</option>
-                <option value="E Section">I+A French</option>
-                <option value="D Section">Advanced Spanish</option>
+                <option value="Intermediate Spanish">Intermediate Spanish</option>
+                <option value="French">I+A French</option>
+                <option value="Advanced Spanish">Advanced Spanish</option>
               </select>
               <br></br>
               <br></br>
