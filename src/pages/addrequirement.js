@@ -3,13 +3,153 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton"; //Allows for customization of the dropdown
 import React, { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+//Creates the firebase that stores information
+const firebaseConfig = {
+  apiKey: "AIzaSyAISdb96KG820TSHtIyvUT_U5g1oxpT-YI",
+  authDomain: "mams-schedule-app.firebaseapp.com",
+  projectId: "mams-schedule-app",
+  storageBucket: "mams-schedule-app.firebasestorage.app",
+  messagingSenderId: "780706817346",
+  appId: "1:780706817346:web:4a3848b6980071d0fad4db",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth();
+
+var currentUser = null;
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    currentUser = user.email;
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});
 
 function FirstReqPage() {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [inputs, setInputs] = useState({});
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleSelectChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+    setSelectedOption(event.target.value);
+  };
 
   const handleSelect = (eventKey) => {
     setSelectedOption(eventKey);
   };
+
+  const handleSubmitXYZ = (event) => {
+      event.preventDefault();
+      try {
+        const docRef = addDoc(collection(db, "requirements"), {
+          // adds a requirement with the selected values to the Firebase storage
+          Type: "No XYZ",
+          Class: "Humanities",
+          Teacher: "Ms. Small",
+          Date: inputs.date,
+        });
+        // add developer info and alert the user
+        console.log("Document written with ID: ", docRef.id);
+        alert("Your requirement has been added. Thank you!");
+      } catch (e) {
+        // handle problems adding the requirement
+        // add developer info and alert the user
+        console.error("Error adding document: ", e);
+        alert("Sorry, your requirement didn't go through. Try again?");
+      }
+    };
+
+    const handleSubmitUnavailable = (event) => {
+      event.preventDefault();
+      try {
+        const docRef = addDoc(collection(db, "requirements"), {
+          // adds a requirement with the selected values to the Firebase storage
+          Type: "Unavailable",
+          Class: "Physics",
+          Teacher: "Mrs. Chase",
+          Time: inputs.time,
+          Date: inputs.date,
+          IsWeekly: inputs.weekly,
+          IsAllDay: inputs.allday,
+        });
+        // add developer info and alert the user
+        console.log("Document written with ID: ", docRef.id);
+        alert("Your requirement has been added. Thank you!");
+      } catch (e) {
+        // handle problems adding the requirement
+        // add developer info and alert the user
+        console.error("Error adding document: ", e);
+        alert("Sorry, your requirement didn't go through. Try again?");
+      }
+    };
+
+    const handleSubmitSection = (event) => {
+      event.preventDefault();
+      try {
+        const docRef = addDoc(collection(db, "requirements"), {
+          // adds a requirement with the selected values to the Firebase storage
+          Type: "Specific Section",
+          Class: "Language",
+          Teacher: "Mrs. Wildfong",
+          Time: inputs.time,
+          Date: inputs.date,
+          Section: inputs.section,
+        });
+        // add developer info and alert the user
+        console.log("Document written with ID: ", docRef.id);
+        alert("Your requirement has been added. Thank you!");
+      } catch (e) {
+        // handle problems adding the requirement
+        // add developer info and alert the user
+        console.error("Error adding document: ", e);
+        alert("Sorry, your requirement didn't go through. Try again?");
+      }
+    };
+
+    const handleSubmitAllSchool = (event) => {
+      event.preventDefault();
+      try {
+        const docRef = addDoc(collection(db, "requirements"), {
+          // adds a requirement with the selected values to the Firebase storage
+          Type: "All-School",
+          Class: "Computer Science",
+          Teacher: "Mrs. Taricco",
+          Time: inputs.time,
+          Date: inputs.date,
+          Reason: inputs.reason,
+          Length: inputs.timeneeded,
+          Double: inputs.normalclass,
+        });
+        // add developer info and alert the user
+        console.log("Document written with ID: ", docRef.id);
+        alert("Your requirement has been added. Thank you!");
+      } catch (e) {
+        // handle problems adding the requirement
+        // add developer info and alert the user
+        console.error("Error adding document: ", e);
+        alert("Sorry, your requirement didn't go through. Try again?");
+      }
+    };
+
   //Changes the screen to the all-school requirement page
   const renderContent = () => {
     switch (selectedOption) {
@@ -20,78 +160,111 @@ function FirstReqPage() {
               <h1>All-School Requirements</h1>
             </header>
             <form>
-              <label htmlFor="Time">Please enter the time</label>
+              {/* Input the date for the all-school */}
+              <label htmlFor="ASDate">Please enter the date</label>
               <br></br>
               <input
-                type="datetime-local"
-                id="Time"
-                name="Time"
-                onChange={(e) => setSelectedOption(e.target.value)}
+                type="date"
+                id="ASdate"
+                name="date"
+                onChange={handleChange}
               ></input>
               <br></br>
-              <label htmlFor="Time">For what Reason</label>
+
+              {/* Input the start time for the all-school */}
+              <label htmlFor="ASTime">Please enter the start time</label>
+              <br></br>
+              <input
+                type="time"
+                id="ASTime"
+                name="time"
+                onChange={handleChange}
+              ></input>
+              <br></br>
+
+              {/* Input the reason for the all-school */}
+              <label htmlFor="ASReason">Please enter the reason</label>
               <br></br>
               <select
-                name="requirements"
-                id="requirements"
-                onChange={(e) => setSelectedOption(e.target.value)}
+                name="reason"
+                id="ASReason"
+                onChange={handleChange}
               >
                 <option value="None">Select an option...</option>
-                <option value="assessment">Assessment</option>
-                <option value="class project">Class Project</option>
-                <option value="other">Other</option>
+                <option value="Assessment">Assessment</option>
+                <option value="Project">Class Project</option>
+                <option value="Other">Other</option>
               </select>
               <br></br>
-              <label htmlFor="class">How much time will you need?</label>
+
+
+              <label htmlFor="ASLength">How much time will you need?</label>
               <br></br>
-              <div>
-                <input type="radio" id="1hr" name="time-needed" value="1hr" />
-                <label htmlFor="1hr"> 1hr</label>
+              <div id="ASLength">
+                <input 
+                  type="radio" 
+                  id="AS1hr" 
+                  name="timeneeded" 
+                  value={4} 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="AS1hr"> 1hr</label>
                 <br></br>
                 <input
                   type="radio"
-                  id="1hr15mins"
-                  name="time-needed"
-                  value="1hr 15mins"
+                  id="AS1hr15mins"
+                  name="timeneeded"
+                  value={5}
+                  onChange={handleChange}
                 />
-                <label htmlFor="1hr15mins"> 1hr 15mins</label>
+                <label htmlFor="AS1hr15mins"> 1hr 15mins</label>
                 <br></br>
                 <input
                   type="radio"
-                  id="1hr30mins"
-                  name="time-needed"
-                  value="1hr 30mins"
+                  id="AS1hr30mins"
+                  name="timeneeded"
+                  value={6}
+                  onChange={handleChange}
                 />
-                <label htmlFor="1hr30mins"> 1hr 30mins</label>
+                <label htmlFor="AS1hr30mins"> 1hr 30mins</label>
                 <br></br>
                 <input
                   type="radio"
-                  id="1hr45mins"
-                  name="time-needed"
-                  value="1hr 45mins"
+                  id="AS1hr45mins"
+                  name="timeneeded"
+                  value={7}
+                  onChange={handleChange}
                 />
-                <label htmlFor="1hr45mins"> 1hr 45mins</label>
+                <label htmlFor="AS1hr45mins"> 1hr 45mins</label>
                 <br></br>
-                <input type="radio" id="2hrs" name="time-needed" value="2hrs" />
-                <label htmlFor="2hrs"> 2hrs</label>
+                <input 
+                  type="radio" 
+                  id="AS2hrs" 
+                  name="timeneeded" 
+                  value={8}
+                  onChange={handleChange} 
+                />
+                <label htmlFor="AS2hrs"> 2hrs</label>
                 <br></br>
                 <input
                   type="radio"
-                  id="2hrs15mins"
-                  name="time-needed"
-                  value="2hrs 15mins"
+                  id="AS2hrs15mins"
+                  name="timeneeded"
+                  value={9}
+                  onChange={handleChange}
                 />
-                <label htmlFor="2hrs15mins"> 2hrs 15mins</label>
+                <label htmlFor="AS2hrs15mins"> 2hrs 15mins</label>
               </div>
-              <label htmlFor="class">
+
+              <label htmlFor="ASclass">
                 Would you also like a normal class this day?
               </label>
-              <div>
-                <input type="radio" id="yes" name="normal-class" value="yes" />
-                <label htmlFor="yes"> Yes</label>
+              <div id="ASclass">
+                <input type="radio" id="ASyes" name="normalclass" value={true} onChange={handleChange} />
+                <label htmlFor="ASyes"> Yes</label>
                 <br></br>
-                <input type="radio" id="no" name="normal-class" value="no" />
-                <label htmlFor="no"> No</label>
+                <input type="radio" id="ASno" name="normalclass" value={false} onChange={handleChange} />
+                <label htmlFor="ASno"> No</label>
               </div>
               <br></br>
               <button type="button" onClick={() => setSelectedOption(null)}>
@@ -99,7 +272,7 @@ function FirstReqPage() {
               </button>
               <button
                 type="button"
-                onClick={() => alert("Thank you for your submission!")}
+                onClick={handleSubmitAllSchool}
               >
                 Submit
               </button>
@@ -113,77 +286,61 @@ function FirstReqPage() {
             <header>
               <h1>Unavailable Requirements</h1>
             </header>
+
+            <p>If you are unavailable for multiple blocks, please submit this form for each block.</p>
             <form>
-              <label htmlFor="Time">Please enter the day</label>
+              {/* Input the unavailable date */}
+              <label htmlFor="UDate">Please enter the date</label>
               <br></br>
               <input
-                type="datetime-local"
-                id="Time"
-                name="Time"
-                onChange={(e) => setSelectedOption(e.target.value)}
+                type="date"
+                id="UDate"
+                name="date"
+                onChange={handleChange}
               ></input>
               <br></br>
-              <label htmlFor="Time">For what Reason</label>
+
+              {/* Input the unavailable time */}
+              <label htmlFor="UTime">Please enter the start time</label>
               <br></br>
-              <select
-                name="requirements"
-                id="requirements"
-                onChange={(e) => setSelectedOption(e.target.value)}
-              >
-                <option value="None">Select an option...</option>
-                <option value="assessment">On Campus</option>
-                <option value="other">Sick</option>
-                <option value="other">Other</option>
-              </select>
+              <input
+                type="time"
+                id="UTime"
+                name="time"
+                onChange={handleChange}
+              ></input>
               <br></br>
-              <label htmlFor="class">How much time will you need?</label>
-              <br></br>
-              <div>
-                <input type="radio" id="1hr" name="time-needed" value="1hr" />
-                <label htmlFor="1hr"> 1hr</label>
+
+              <label htmlFor="UWeekly">
+                Will this be a weekly occurence?
+              </label>
+              <div id="UWeekly">
+                <input type="radio" id="UIsWeekly" name="weekly" value={true} onChange={handleChange} />
+                <label htmlFor="UIsWeekly"> Yes</label>
                 <br></br>
-                <input
-                  type="radio"
-                  id="1hr15mins"
-                  name="time-needed"
-                  value="1hr 15mins"
-                />
-                <label htmlFor="1hr15mins"> 1hr 15mins</label>
-                <br></br>
-                <input
-                  type="radio"
-                  id="1hr30mins"
-                  name="time-needed"
-                  value="1hr 30mins"
-                />
-                <label htmlFor="1hr30mins"> 1hr 30mins</label>
-                <br></br>
-                <input
-                  type="radio"
-                  id="1hr45mins"
-                  name="time-needed"
-                  value="1hr 45mins"
-                />
-                <label htmlFor="1hr45mins"> 1hr 45mins</label>
-                <br></br>
-                <input type="radio" id="2hrs" name="time-needed" value="2hrs" />
-                <label htmlFor="2hrs"> 2hrs</label>
-                <br></br>
-                <input
-                  type="radio"
-                  id="2hrs15mins"
-                  name="time-needed"
-                  value="2hrs 15mins"
-                />
-                <label htmlFor="2hrs15mins"> 2hrs 15mins</label>
+                <input type="radio" id="UNotWeekly" name="weekly" value={false} onChange={handleChange} />
+                <label htmlFor="UNotWeekly"> No</label>
               </div>
               <br></br>
+
+              <label htmlFor="UFullday">
+                Mark here if you will be out the whole day. This overrides the Time field.
+              </label>
+              <div id="UFullday">
+                <input type="radio" id="UAllDay" name="allday" value={true} onChange={handleChange} />
+                <label htmlFor="UAllDay"> Yes</label>
+                <br></br>
+                <input type="radio" id="UNotAllDay" name="allday" value={false} onChange={handleChange} />
+                <label htmlFor="UNotAllDay"> No</label>
+              </div>
+              <br></br>
+
               <button type="button" onClick={() => setSelectedOption(null)}>
                 Back
               </button>
               <button
                 type="button"
-                onClick={() => alert("Thank you for your submission!")}
+                onClick={handleSubmitUnavailable}
               >
                 Submit
               </button>
@@ -198,77 +355,49 @@ function FirstReqPage() {
               <h1>Specific Section</h1>
             </header>
             <form>
-              <label htmlFor="Time">What Section?</label>
+              {/* Input the date for the section */}
+              <label htmlFor="SSDate">Please enter the date</label>
+              <br></br>
+              <input
+                type="date"
+                id="SSDate"
+                name="date"
+                onChange={handleChange}
+              ></input>
+              <br></br>
+
+              {/* Input the start time for the section */}
+              <label htmlFor="SSTime">Please enter the start time</label>
+              <br></br>
+              <input
+                type="time"
+                id="SSTime"
+                name="time"
+                onChange={handleChange}
+              ></input>
+              <br></br>
+
+              <label htmlFor="SSSection">What Section?</label>
               <br></br>
               <select
                 name="section"
-                id="section"
-                onChange={(e) => setSelectedOption(e.target.value)}
+                id="SSSection"
+                onChange={handleSelectChange}
               >
                 <option value="None">Select an option...</option>
-                <option value="QSection">Intermediate Spanish</option>
-                <option value="ESection">I+A French</option>
-                <option value="DSection">Advanced Spanish</option>
+                <option value="Q Section">Intermediate Spanish</option>
+                <option value="E Section">I+A French</option>
+                <option value="D Section">Advanced Spanish</option>
               </select>
               <br></br>
-              <label htmlFor="class">When do you want this section?</label>
               <br></br>
-              <div>
-                <input
-                  type="radio"
-                  id="block1"
-                  name="time-needed"
-                  value="Block 1"
-                />
-                <label htmlFor="block1"> Block 1</label>
-                <br></br>
-                <input
-                  type="radio"
-                  id="block2"
-                  name="time-needed"
-                  value="Block 2"
-                />
-                <label htmlFor="block2"> Block 2</label>
-                <br></br>
-                <input
-                  type="radio"
-                  id="block3"
-                  name="time-needed"
-                  value="Block 3"
-                />
-                <label htmlFor="block3"> Block 3</label>
-                <br></br>
-                <input
-                  type="radio"
-                  id="block4"
-                  name="time-needed"
-                  value="Block 4"
-                />
-                <label htmlFor="block4"> Block 4</label>
-                <br></br>
-                <input
-                  type="radio"
-                  id="block5"
-                  name="time-needed"
-                  value="Block 5"
-                />
-                <label htmlFor="block5"> Block 5</label>
-                <br></br>
-                <input
-                  type="radio"
-                  id="block6"
-                  name="time-needed"
-                  value="Block 6"
-                />
-                <label htmlFor="block6"> Block 6</label>
-              </div>
-              <br></br>
+              
               <button type="button" onClick={() => setSelectedOption(null)}>
                 Back
               </button>
               <button
                 type="button"
-                onClick={() => alert("Thank you for your submission!")}
+                onClick={handleSubmitSection}
               >
                 Submit
               </button>
@@ -284,10 +413,16 @@ function FirstReqPage() {
             <form>
               <input
                 type="date"
-                id="Date"
-                name="Date"
-                onChange={(e) => setSelectedOption(e.target.value)}
+                id="NXYZDate"
+                name="date"
+                onChange={handleChange}
               ></input>
+              <button
+                type="button"
+                onClick={handleSubmitXYZ}
+              >
+                Submit
+              </button>
             </form>
           </div>
         );
