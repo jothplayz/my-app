@@ -2,11 +2,12 @@ import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton"; //Allows for customization of the dropdown
-import React, { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+//import { currentUID, currentUser} from "../App.js";
 
 //Creates the firebase that stores information
 const firebaseConfig = {
@@ -22,13 +23,15 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-var currentUser = null;
+var currUser = "jbixho@wpi.edu";
+var currUID = "efuKk8Ki7ihvI0FyKNfYvPjvN7E3";
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
-    currentUser = user.email;
+    currUser = user.email;
+    currUID = user.uid;
     // ...
   } else {
     // User is signed out
@@ -36,9 +39,13 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+var currentTeacher = "";
+var currentClass = "";
+
 function FirstReqPage() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputs, setInputs] = useState({});
+  const [loading, setLoading] = useState({});
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -63,8 +70,8 @@ function FirstReqPage() {
         const docRef = addDoc(collection(db, "requirements"), {
           // adds a requirement with the selected values to the Firebase storage
           Type: "No XYZ",
-          Class: "Humanities",
-          Teacher: "Ms. Small",
+          Class: currentClass,
+          Teacher: currentTeacher,
           Date: inputs.date,
         });
         // add developer info and alert the user
@@ -84,8 +91,8 @@ function FirstReqPage() {
         const docRef = addDoc(collection(db, "requirements"), {
           // adds a requirement with the selected values to the Firebase storage
           Type: "Unavailable",
-          Class: "Physics",
-          Teacher: "Mrs. Chase",
+          Class: currentClass,
+          Teacher: currentTeacher,
           Time: inputs.time,
           Date: inputs.date,
           IsWeekly: inputs.weekly,
@@ -108,8 +115,8 @@ function FirstReqPage() {
         const docRef = addDoc(collection(db, "requirements"), {
           // adds a requirement with the selected values to the Firebase storage
           Type: "Specific Section",
-          Class: "Language",
-          Teacher: "Mrs. Wildfong",
+          Class: currentClass,
+          Teacher: currentTeacher,
           Time: inputs.time,
           Date: inputs.date,
           Section: inputs.section,
@@ -131,8 +138,8 @@ function FirstReqPage() {
         const docRef = addDoc(collection(db, "requirements"), {
           // adds a requirement with the selected values to the Firebase storage
           Type: "All-School",
-          Class: "Computer Science",
-          Teacher: "Mrs. Taricco",
+          Class: currentClass,
+          Teacher: currentTeacher,
           Time: inputs.time,
           Date: inputs.date,
           Reason: inputs.reason,
@@ -149,6 +156,28 @@ function FirstReqPage() {
         alert("Sorry, your requirement didn't go through. Try again?");
       }
     };
+
+    useEffect(() => {
+      const unsubscribeAuth = auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          const docRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            currentTeacher = docSnap.data().Name;
+            currentClass = docSnap.data().Class;
+          } else {
+            console.log("No such document!");
+          }
+        }
+        setLoading(false);
+      });
+  
+      return () => unsubscribeAuth(); // Clean up the listener
+    }, []);
+  
+    if (loading) {
+      return <div>Loading user data...</div>;
+    }
 
   //Changes the screen to the all-school requirement page
   const renderContent = () => {
@@ -450,6 +479,7 @@ function FirstReqPage() {
                 <Dropdown.Item eventKey="No-XYZ">No XYZ Day</Dropdown.Item>
               </DropdownButton>
             </div>
+            <p>The current teacher is {currentTeacher} and the current class is {currentClass}</p>
           </div>
         );
     }

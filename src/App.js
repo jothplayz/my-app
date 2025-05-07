@@ -7,7 +7,7 @@ import AddRequirements from "./pages/addrequirement.js";
 import Index from "./pages/index.js";
 import Login from "./pages/login.js";
 import Signup from "./pages/signup.js";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -26,13 +26,15 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-var currentUser = null;
+var currUser = "jbixho@wpi.edu";
+var currUID = "efuKk8Ki7ihvI0FyKNfYvPjvN7E3";
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
-    currentUser = user.email;
+    currUser = user.email;
+    currUID = user.uid;
     // ...
   } else {
     // User is signed out
@@ -93,7 +95,7 @@ function HomePage() {
   return (
     <div>
       <header className="App-header">
-        <h1>Hello, {currentUser}</h1>
+        <h1>Hello, {currUser}</h1>
         <h2>{message}</h2>
         {MyForm()}
       </header>
@@ -173,3 +175,5 @@ function MyForm() {
 }
 
 export default App;
+export var currentUID = currUID;
+export var currentUser = currUser;
