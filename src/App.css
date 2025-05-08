@@ -37,6 +37,12 @@
 .dropdownstyle {
 text-align: center;
 }
+.index{
+outline-style: groove;
+color: black;
+padding-top: 10px;
+
+}
 
 @keyframes App-logo-spin {
   from {

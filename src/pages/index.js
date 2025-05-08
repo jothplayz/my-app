@@ -63,7 +63,7 @@ function RequirementsView() {
   return (
     <div>
       {requirementsData.map((req) => (
-        <div key={req.id}>
+        <div className="index" key={req.id}>
           <h2>Class: {req.Class}</h2>
           <p>Time: {req.Time}</p>
           <p>Requirement: {req.Type}</p>
