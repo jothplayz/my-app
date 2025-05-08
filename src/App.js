@@ -45,7 +45,7 @@ onAuthStateChanged(auth, (user) => {
 //Creates routes for the navbar created in the method below to use
 function App() {
   return (
-    <Router>
+    <Router >
       {/* MyNavbar is placed outside of Routes so it appears on all pages */}
       <MyNavbar />
       <Routes>
@@ -61,7 +61,7 @@ function App() {
 //Creates the Navbar to go the the four pages created
 function MyNavbar() {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="dark" variant="dark"  expand="lg" >
       <Container>
         <Navbar.Brand as={Link} to="/">Mass Academy Schedule App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

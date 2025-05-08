@@ -47,8 +47,9 @@ font-size: large;
 }
 .logininput{
 text-align: center;
-
- 
+}
+.Navbar{
+  color: rgb(0, 0, 0);
 }
 @keyframes App-logo-spin {
   from {
