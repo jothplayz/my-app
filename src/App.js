@@ -61,20 +61,11 @@ function App() {
 //Creates the Navbar to go the the four pages created
 function MyNavbar() {
   return (
-    <Navbar bg="dark" variant="dark"  expand="lg" >
-      
+    <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-      <img src="/schMAMSlogo32.png" alt="logo"/>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <Navbar.Brand as={Link} to="/">         Mass Academy Schedule App</Navbar.Brand>
-=======
-        <Navbar.Brand as={Link} to="/">  Mass Academy Schedule App</Navbar.Brand>
->>>>>>> Stashed changes
-=======
-        <Navbar.Brand as={Link} to="/">  Mass Academy Schedule App</Navbar.Brand>
->>>>>>> Stashed changes
+        <img src="/schMAMSlogo32.png" alt="logo" />
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <Navbar.Brand as={Link} to="/">Mass Academy Schedule App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
@@ -88,6 +79,7 @@ function MyNavbar() {
     </Navbar>
   );
 }
+
 //Displays opening screen
 function HomePage() {
   const message = "Welcome to the Mass Academy schedule generator. \n If you have not logged in yet, please visit the Login page now. \n To add a requirement, go to the Add page. \n To view all currently added requirements, go to the Index page.";
