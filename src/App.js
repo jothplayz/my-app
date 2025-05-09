@@ -66,8 +66,12 @@ function MyNavbar() {
       <Container>
       <img src="/schMAMSlogo32.png" alt="logo"/>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <Navbar.Brand as={Link} to="/">         Mass Academy Schedule App</Navbar.Brand>
+=======
+        <Navbar.Brand as={Link} to="/">  Mass Academy Schedule App</Navbar.Brand>
+>>>>>>> Stashed changes
 =======
         <Navbar.Brand as={Link} to="/">  Mass Academy Schedule App</Navbar.Brand>
 >>>>>>> Stashed changes
