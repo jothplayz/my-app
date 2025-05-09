@@ -65,6 +65,7 @@ function MyNavbar() {
       
       <Container>
       <img src="/schMAMSlogo32.png" alt="logo"/>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <Navbar.Brand as={Link} to="/">         Mass Academy Schedule App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
