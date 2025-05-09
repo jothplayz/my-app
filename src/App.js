@@ -26,8 +26,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-var currUser = "";
-var currUID = "";
+var currUser = "jbixho@wpi.edu";
+var currUID = "efuKk8Ki7ihvI0FyKNfYvPjvN7E3";
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -62,8 +62,10 @@ function App() {
 function MyNavbar() {
   return (
     <Navbar bg="dark" variant="dark"  expand="lg" >
+      
       <Container>
-        <Navbar.Brand as={Link} to="/">Mass Academy Schedule App</Navbar.Brand>
+      <img src="/schMAMSlogo32.png" alt="logo"/>
+        <Navbar.Brand as={Link} to="/">         Mass Academy Schedule App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
@@ -94,7 +96,7 @@ function HomePage() {
  
 
   return (
-    <div >
+    <div>
       <header className="App-header">
         <h1>Hello, {currUser}</h1>
         <h2>{message}</h2>
