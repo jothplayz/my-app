@@ -55,9 +55,9 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Username:</label>
-        <input type="text" id="email" name="email" />
+    <form onSubmit={handleSubmit} className="logininput">
+        <label htmlFor="email">Username: </label>
+        <input type="text" id="email" name="email"  />
         <br />
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" name="password" />

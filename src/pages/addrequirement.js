@@ -462,6 +462,7 @@ function FirstReqPage() {
             <p className="title">
               What Type Of Requirement Would You Like To Make?
             </p>
+            <p className="text">The current teacher is {currentTeacher} and the current class is {currentClass}</p>
             <div className="dropdownstyle">
               <DropdownButton
                 id="dropdown-basic-button"
@@ -479,7 +480,7 @@ function FirstReqPage() {
                 <Dropdown.Item eventKey="No-XYZ">No XYZ Day</Dropdown.Item>
               </DropdownButton>
             </div>
-            <p>The current teacher is {currentTeacher} and the current class is {currentClass}</p>
+           
           </div>
         );
     }
