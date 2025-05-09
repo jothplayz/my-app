@@ -26,8 +26,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-var currUser = "jbixho@wpi.edu";
-var currUID = "efuKk8Ki7ihvI0FyKNfYvPjvN7E3";
+var currUser = "";
+var currUID = "";
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
