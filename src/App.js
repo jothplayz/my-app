@@ -63,9 +63,13 @@ function MyNavbar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <img src="/schMAMSlogo32.png" alt="logo" />
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <Navbar.Brand as={Link} to="/">Mass Academy Schedule App</Navbar.Brand>
+      <img src="/schMAMSlogo32.png" alt="logo"/>
+<<<<<<< Updated upstream
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <Navbar.Brand as={Link} to="/">         Mass Academy Schedule App</Navbar.Brand>
+=======
+        <Navbar.Brand as={Link} to="/">  Mass Academy Schedule App</Navbar.Brand>
+>>>>>>> Stashed changes
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
