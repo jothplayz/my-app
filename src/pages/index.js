@@ -50,12 +50,6 @@ function RequirementsView() {
     fetchRequirements();
   }, []); // Empty dependency array ensures this runs only once after the initial render
 
-  var listOfDates = [];
-
-  for (req in requirementsData){
-    
-  }
-
   console.log("Rendering with requirementsData:", requirementsData);
 
   if (loading) {
@@ -65,6 +59,16 @@ function RequirementsView() {
   if (error) {
     return <p>Error loading requirements: {error.message}</p>;
   }
+
+  /*var listOfDates = [];
+
+  for (req in requirementsData){
+    listOfDates += req.Date;
+  }
+
+  listOfDates.sort();
+
+  console.log(listOfDates);*/
 
   return (
     <div>
