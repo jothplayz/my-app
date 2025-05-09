@@ -37,11 +37,12 @@
 .dropdownstyle {
 text-align: center;
 }
-.index{
+/*.index{
 outline-style: groove;
 color: black;
 padding-top: 10px;
-}
+}*/
+
 .loginform{
 font-size: large;
 }
@@ -62,5 +63,34 @@ text-align: center;
 .text{
   font-size: 30px;
   text-align: center;
+}
+
+.addreq{
+  background-color: #d0e2e2;
+}
+
+.requirement{
+  text-align: left;
+  padding: 50px;
+  background-color: #d0e2e2;
+  align-self: left;
+  margin-left: 50px;
+  margin-bottom: 50px;
+  border-radius: 50px;
+  width: 50%;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("mams.jpg");
+
+  /* Set a specific height */
+  min-height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 

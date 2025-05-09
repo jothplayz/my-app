@@ -60,17 +60,66 @@ function RequirementsView() {
     return <p>Error loading requirements: {error.message}</p>;
   }
 
-  /*var listOfDates = [];
+  requirementsData.sort((a,b) => (a.Date > b.Date));
 
-  for (req in requirementsData){
-    listOfDates += req.Date;
+  function RequirementEl({ useData }) {
+    if (useData.Type === "No XYZ") {
+      return (
+        <div class="requirement">
+        <h3>No XYZ</h3>
+        <p>Date: {useData.Date}</p>
+        <p>Requesting teacher: {useData.Teacher}</p>
+        <p>Why: {useData.Class}</p>
+        </div>
+      );
+    }
+    if (useData.Type === "Unavailable" && useData.IsAllDay === "false") {
+      return (
+        <div class="requirement">
+        <h3>Unavailable Teacher</h3>
+        <p>Date: {useData.Date}</p>
+        <p>Time: {useData.Time}</p>
+        <p>Requesting teacher: {useData.Teacher}</p>
+        <p>Class: {useData.Class}</p>
+        </div>
+      );
+    }
+    if (useData.Type === "Unavailable" && useData.IsAllDay === "true") {
+      return (
+        <div class="requirement">
+        <h3>Unavailable Teacher</h3>
+        <p>Date: {useData.Date}</p>
+        <p>Time: All Day</p>
+        <p>Requesting teacher: {useData.Teacher}</p>
+        <p>Class: {useData.Class}</p>
+        </div>
+      );
+    }
+    if (useData.Type === "Specific Section") {
+      return (
+        <div class="requirement">
+        <h3>{useData.Section} Request</h3>
+        <p>Date: {useData.Date}</p>
+        <p>Time: {useData.Time}</p>
+        <p>Requesting teacher: {useData.Teacher}</p>
+        <p>Class: {useData.Class}</p>
+        </div>
+      );
+    }
+    if (useData.Type === "All-School") {
+      return (
+        <div class="requirement">
+        <h3>All-School {useData.Class}</h3>
+        <p>Date: {useData.Date}</p>
+        <p>Time: {useData.Time}</p>
+        <p>Requesting teacher: {useData.Teacher}</p>
+        <p>Why: {useData.Reason}</p>
+        </div>
+      );
+    }
   }
 
-  listOfDates.sort();
-
-  console.log(listOfDates);*/
-
-  return (
+  /*return (
     <div>
       {requirementsData.map((req) => (
         <div className="index" key={req.id}>
@@ -80,6 +129,18 @@ function RequirementsView() {
           <br />
         </div>
       ))}
+    </div>
+  );*/
+
+  return (
+    <div class="parallax">
+      <br></br>
+      {requirementsData.map((req) => (
+        <div className="index" key={req.id}>
+          <RequirementEl useData={req} />
+        </div>
+      ))}
+      <br></br>
     </div>
   );
 }

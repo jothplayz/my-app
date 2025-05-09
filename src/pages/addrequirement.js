@@ -411,7 +411,7 @@ function FirstReqPage() {
               <select
                 name="section"
                 id="SSSection"
-                onChange={handleSelectChange}
+                onChange={handleChange}
               >
                 <option value="None">Select an option...</option>
                 <option value="Intermediate Spanish">Intermediate Spanish</option>
@@ -446,6 +446,10 @@ function FirstReqPage() {
                 name="date"
                 onChange={handleChange}
               ></input>
+              <br></br>
+              <button type="button" onClick={() => setSelectedOption(null)}>
+                Back
+              </button>
               <button
                 type="button"
                 onClick={handleSubmitXYZ}
@@ -458,7 +462,7 @@ function FirstReqPage() {
       default:
         //The first screen the user sees when selecting add a requirement
         return (
-          <div>
+          <div >
             <p className="title">
               What Type Of Requirement Would You Like To Make?
             </p>
