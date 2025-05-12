@@ -21,6 +21,7 @@ const firebaseConfig = {
   appId: "1:780706817346:web:4a3848b6980071d0fad4db",
 };
 
+// initialize and name all Firebase services
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
@@ -29,6 +30,7 @@ var currUser = null;
 var currUID = null;
 
 onAuthStateChanged(auth, (user) => {
+  // add a listener to the authentication object, code taken from Firebase docs
   if (user) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
@@ -80,60 +82,17 @@ function MyNavbar() {
 //Displays opening screen
 function HomePage() {
   const message = "Welcome to the Mass Academy schedule generator. \n If you have not logged in yet, please visit the Login page now. \n To add a requirement, go to the Add page. \n To view all currently added requirements, go to the Index page.";
-  const teachers = [
-    "Mrs. Wildfong",
-    "Ms. Small",
-    "Dr. Crowthers",
-    "Ms. Ludes",
-    "Mrs. Burns",
-    "Mrs. Chase",
-    "Mrs. Taricco",
-    "Mrs. Post",
-    "Ms. Liz",
-  ];
- 
 
   return (
     <div>
       <header className="App-header">
         <h1>Hello, {currUser}</h1>
         <h2>{message}</h2>
-        {MyForm()}
       </header>
     </div>
   );
 }
 
-function MyForm() {
-  // code adapted from Firebase docs
-  const [inputs, setInputs] = useState({});
-
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    try {
-      const docRef = addDoc(collection(db, "requirements"), {
-        // adds a requirement with the selected values to the Firebase storage
-        Type: inputs.requirements,
-        Class: inputs.class,
-        Time: inputs.Time,
-      });
-      // add developer info and alert the user
-      console.log("Document written with ID: ", docRef.id);
-      alert("Your requirement has been added.");
-    } catch (e) {
-      // handle problems adding the requirement
-      // add developer info and alert the user
-      console.error("Error adding document: ", e);
-      alert("Sorry, your requirement didn't go through. Try again?");
-    }
-  };
-}
 
 export default App;
 export var currentUID = currUID;
