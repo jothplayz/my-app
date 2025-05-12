@@ -61,9 +61,9 @@ function MyNavbar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-      <img src="/schmamslogo.svg" alt="logo"/>
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <Navbar.Brand as={Link} to="/">         Mass Academy Schedule App</Navbar.Brand>
+        <img src="/schmamslogo.svg" alt="logo" style={{ width: "50px", height: "50px" }} />
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <Navbar.Brand as={Link} to="/">Mass Academy Schedule App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
