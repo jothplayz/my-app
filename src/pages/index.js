@@ -31,7 +31,7 @@ function RequirementsView() {
   const [requirementsData, setRequirementsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+//Displays the current requirements made with type of req, date, time, teacher, and reason/class
   useEffect(() => {
     async function fetchRequirements() {
       try{
@@ -122,19 +122,6 @@ function RequirementsView() {
       );
     }
   }
-
-  /*return (
-    <div>
-      {requirementsData.map((req) => (
-        <div className="index" key={req.id}>
-          <h2>Class: {req.Class}</h2>
-          <p>Time: {req.Time}</p>
-          <p>Requirement: {req.Type}</p>
-          <br />
-        </div>
-      ))}
-    </div>
-  );*/
 
   return (
     <div class="parallax">
