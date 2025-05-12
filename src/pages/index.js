@@ -62,6 +62,8 @@ function RequirementsView() {
 
   requirementsData.sort((a,b) => (a.Date > b.Date));
 
+  console.log("Rendering with requirementsData:", requirementsData);
+
   function RequirementEl({ useData }) {
     if (useData.Type === "No XYZ") {
       return (
