@@ -6,7 +6,6 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import AddRequirements from "./pages/addrequirement.js";
 import Index from "./pages/index.js";
 import Login from "./pages/login.js";
-import Signup from "./pages/signup.js";
 import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
@@ -26,8 +25,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-var currUser = "jbixho@wpi.edu";
-var currUID = "efuKk8Ki7ihvI0FyKNfYvPjvN7E3";
+var currUser = null;
+var currUID = null;
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -53,7 +52,6 @@ function App() {
         <Route path="/add" element={<AddRequirements />} />
         <Route path="/index" element={<Index />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
       </Routes>
     </Router>
   );
@@ -72,7 +70,6 @@ function MyNavbar() {
             <Nav.Link as={Link} to="/add">Add</Nav.Link>
             <Nav.Link as={Link} to="/index">Index</Nav.Link>
             <Nav.Link as={Link} to="/login">Login</Nav.Link>
-            <Nav.Link as={Link} to="/signup">Signup</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

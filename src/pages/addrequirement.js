@@ -53,13 +53,6 @@ function FirstReqPage() {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  const handleSelectChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
-    setSelectedOption(event.target.value);
-  };
-
   const handleSelect = (eventKey) => {
     setSelectedOption(eventKey);
   };
@@ -462,7 +455,7 @@ function FirstReqPage() {
       default:
         //The first screen the user sees when selecting add a requirement
         return (
-          <div >
+          <div>
             <p className="title">
               What Type Of Requirement Would You Like To Make?
             </p>
