@@ -60,7 +60,7 @@ function RequirementsView() {
     return <p>Error loading requirements: {error.message}</p>;
   }
 
-  requirementsData.sort((a,b) => (a.Date > b.Date));
+  requirementsData.sort((a, b) => new Date(a.Date) - new Date(b.Date));
 
   function RequirementEl({ useData }) {
     if (useData.Type === "No XYZ") {
