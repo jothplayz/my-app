@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getFirestore, doc, collection, getDoc, getDocs, getDocsFromCache } from "firebase/firestore";
 
-
+// set up Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAISdb96KG820TSHtIyvUT_U5g1oxpT-YI",
   authDomain: "mams-schedule-app.firebaseapp.com",
@@ -16,6 +16,7 @@ const firebaseConfig = {
   appId: "1:780706817346:web:4a3848b6980071d0fad4db",
 };
 
+// page-specific Firebase references
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -26,6 +27,7 @@ function Index() {
 }
 
 function RequirementsView() {
+  // useState
   const [requirementsData, setRequirementsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -61,6 +63,8 @@ function RequirementsView() {
   }
 
   requirementsData.sort((a,b) => (a.Date > b.Date));
+
+  console.log("Rendering with requirementsData:", requirementsData);
 
   function RequirementEl({ useData }) {
     if (useData.Type === "No XYZ") {
