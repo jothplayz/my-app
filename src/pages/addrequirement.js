@@ -19,12 +19,16 @@ const firebaseConfig = {
   appId: "1:780706817346:web:4a3848b6980071d0fad4db",
 };
 
+// set up page-specific Firebase
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-var currUser = "jbixho@wpi.edu";
-var currUID = "efuKk8Ki7ihvI0FyKNfYvPjvN7E3";
+// initialize user instance variables
+
+var currUser = null;
+var currUID = null;
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -39,6 +43,8 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+// initialize teacher variables
+
 var currentTeacher = "";
 var currentClass = "";
 
@@ -50,14 +56,15 @@ function FirstReqPage() {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
+    setInputs((values) => ({ ...values, [name]: value })); // handles a change to any input field (dropdowns, radio buttons, time/date inputs...)
   };
 
   const handleSelect = (eventKey) => {
-    setSelectedOption(eventKey);
+    setSelectedOption(eventKey); // handles a change to the type of requirement needed
   };
 
   const handleSubmitXYZ = (event) => {
+    // submit NO XYZ in correct format to Firebase
       event.preventDefault();
       try {
         const docRef = addDoc(collection(db, "requirements"), {
@@ -79,6 +86,7 @@ function FirstReqPage() {
     };
 
     const handleSubmitUnavailable = (event) => {
+      // submit UNAVAILABLE in correct format to Firebase
       event.preventDefault();
       try {
         const docRef = addDoc(collection(db, "requirements"), {
@@ -103,6 +111,7 @@ function FirstReqPage() {
     };
 
     const handleSubmitSection = (event) => {
+      // submit SPECIFIC SECTION in correct format to Firebase
       event.preventDefault();
       try {
         const docRef = addDoc(collection(db, "requirements"), {
@@ -126,6 +135,7 @@ function FirstReqPage() {
     };
 
     const handleSubmitAllSchool = (event) => {
+      // submit ALL SCHOOL in correct format to Firebase
       event.preventDefault();
       try {
         const docRef = addDoc(collection(db, "requirements"), {
@@ -153,27 +163,29 @@ function FirstReqPage() {
     useEffect(() => {
       const unsubscribeAuth = auth.onAuthStateChanged(async (user) => {
         if (user) {
-          const docRef = doc(db, "users", user.uid);
+          const docRef = doc(db, "users", user.uid); // the users collection stores teacher names and classes - the document IDs match the user IDs from Firebase Auth
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
+            // if there is a document corresponding to current User ID, set the teacher and class accordingly
             currentTeacher = docSnap.data().Name;
             currentClass = docSnap.data().Class;
           } else {
             console.log("No such document!");
           }
         }
-        setLoading(false);
+        setLoading(false); // Page load only after checking if a teacher is logged in
       });
   
       return () => unsubscribeAuth(); // Clean up the listener
     }, []);
   
     if (loading) {
-      return <div>Loading user data...</div>;
+      return <div>Loading user data...</div>; // need to verify user before submitting requirements
     }
 
   //Changes the screen to the all-school requirement page
   const renderContent = () => {
+    // switch on the requirement type selected at the first dropdown
     switch (selectedOption) {
       case "all-school":
         return (
@@ -476,6 +488,7 @@ function FirstReqPage() {
                 </Dropdown.Item>
                 <Dropdown.Item eventKey="No-XYZ">No XYZ Day</Dropdown.Item>
               </DropdownButton>
+              {/*Dropdown for the initial choice between requirement types */}
             </div>
            
           </div>

@@ -27,26 +27,26 @@ function Index() {
 }
 
 function RequirementsView() {
-  // useState
-  const [requirementsData, setRequirementsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // useState allows tracking of variables when the page loads
+  const [requirementsData, setRequirementsData] = useState([]); // the data from firebase
+  const [loading, setLoading] = useState(true); // for tracking whether the website is finished getting the data from Firebase
+  const [error, setError] = useState(null); // for tracking errors
 
   useEffect(() => {
     async function fetchRequirements() {
       try{
-        const querySnapshot = await getDocs(collection(db, "requirements"));
+        const querySnapshot = await getDocs(collection(db, "requirements")); // pull docs from Firebase requirements collection
         const data = [];
         querySnapshot.forEach((doc) => {
           data.push({ id: doc.id, ...doc.data() });
-          console.log(doc.data());
+          console.log(doc.data()); // adds the requirement and its data to a list, logs info
         });
         console.log(data);
-        setRequirementsData(data);
-        setLoading(false);
+        setRequirementsData(data); // the data that will actually be used on the site
+        setLoading(false); // ensures the function only runs once
       }
       catch(e){
-        console.log(e);
+        console.log(e); // logs errors if there are any
       }
     }
     fetchRequirements();
@@ -55,16 +55,17 @@ function RequirementsView() {
   console.log("Rendering with requirementsData:", requirementsData);
 
   if (loading) {
-    return <p>Loading requirements...</p>;
+    return <p>Loading requirements...</p>; // Handles website while requirements are being fetched from Firebase
   }
 
   if (error) {
-    return <p>Error loading requirements: {error.message}</p>;
+    return <p>Error loading requirements: {error.message}</p>; // Handles errors
   }
 
-  requirementsData.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+  requirementsData.sort((a, b) => new Date(a.Date) - new Date(b.Date)); // orders requirements by date
 
   function RequirementEl({ useData }) {
+    // defines the way a requirement with given data should be displayed - parameters are the names of Firebase fields
     if (useData.Type === "No XYZ") {
       return (
         <div class="requirement">
@@ -73,7 +74,7 @@ function RequirementsView() {
         <p>Requesting teacher: {useData.Teacher}</p>
         <p>Why: {useData.Class}</p>
         </div>
-      );
+      ); // displays info relevant to a "No XYZ day" requirement
     }
     if (useData.Type === "Unavailable" && useData.IsAllDay === "false") {
       return (
@@ -84,7 +85,7 @@ function RequirementsView() {
         <p>Requesting teacher: {useData.Teacher}</p>
         <p>Class: {useData.Class}</p>
         </div>
-      );
+      ); // displays info relevant to a teacher who is unavailable for a specific block
     }
     if (useData.Type === "Unavailable" && useData.IsAllDay === "true") {
       return (
@@ -95,7 +96,7 @@ function RequirementsView() {
         <p>Requesting teacher: {useData.Teacher}</p>
         <p>Class: {useData.Class}</p>
         </div>
-      );
+      ); // displays info relevant to a teacher who is unavailable all day
     }
     if (useData.Type === "Specific Section") {
       return (
@@ -106,7 +107,7 @@ function RequirementsView() {
         <p>Requesting teacher: {useData.Teacher}</p>
         <p>Class: {useData.Class}</p>
         </div>
-      );
+      ); // displays info for a teacher requesting one of the sections for a specific time
     }
     if (useData.Type === "All-School") {
       return (
@@ -117,7 +118,7 @@ function RequirementsView() {
         <p>Requesting teacher: {useData.Teacher}</p>
         <p>Why: {useData.Reason}</p>
         </div>
-      );
+      ); // displays info for a requested all-school
     }
   }
 
@@ -132,7 +133,7 @@ function RequirementsView() {
         </div>
       ))}
     </div>
-  );*/
+  );*/ // an old version of the requirement display
 
   return (
     <div class="parallax">
@@ -144,7 +145,7 @@ function RequirementsView() {
       ))}
       <br></br>
     </div>
-  );
+  ); // returns a RequirementEl element for each requirement in the data (which has already been ordered by date)
 }
 
 export default Index;

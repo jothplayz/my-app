@@ -29,7 +29,7 @@ function Login() {
 
 function LoginForm() {
   // code adapted from Firebase docs
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({}); // inputs are the email and password
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -47,10 +47,11 @@ function LoginForm() {
       alert("Thank you for signing in, " + event.target.email.value);
     })
     .catch((error) => {
+      // Not signed in - could be due to error or mistyped password, etc.
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.error("Error signing in: ", error);
-      alert("Unable to sign in. Check that username and password are correctly typed, then try again. \n\n" + "The error generated was: " + errorMessage);
+      console.error("Error signing in: ", error); // log to console
+      alert("Unable to sign in. Check that username and password are correctly typed, then try again. \n\n" + "The error generated was: " + errorMessage); // tell user
     });
   }
 
